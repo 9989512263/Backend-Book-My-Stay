@@ -7,9 +7,8 @@ const addHotel = async (req, res) => {
     const hotelId = Math.floor(100000 + Math.random() * 900000);
  
     try {
-        // console.log("start")
+
         if (!name || !roomCount || !description || !starRating || !address || !city || !country || !postalCode || !phoneNumber || !email || !imageURL || !hotelId) {
-            // console.log("commingggg")
             return res.status(400).json({ message: "please enter all details " });
         }
  

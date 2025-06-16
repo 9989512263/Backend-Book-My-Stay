@@ -8,6 +8,7 @@ const SubSuccess = async (req, res) => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailRegex.test(email);
     };
+    
     if (!isValidEmail(email)) {
         return res.status(400).json({ message: "Invalid email address." });
     }

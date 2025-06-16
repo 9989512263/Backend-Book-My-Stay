@@ -1,17 +1,12 @@
 const Hotel=require("../models/hotelModel");
 
 const deleteHotel=async(req,res)=>{
-    const {hotelId}=req.body;
+    const hotelId = req.params.id;
     try{
-        if(!hotelId){
-            return res.status(400).json({message:"Enter the hotelId please"})
-        }
-        const hotel=await Hotel.findOne({hotelId});
-        if(!hotel){
-            return res.status(400).json({message:"It is not a valid hotel"});
-        }
-        await Hotel.deleteOne({ hotelId });
-
+        const deletedHotel = await Hotel.findByIdAndDelete(hotelId);
+        if (!deletedHotel) {
+            return res.status(404).json({ message: 'Hotel not found' });
+          }      
         return res.status(200).json({ message: "Hotel deleted successfully!" });
 
     } catch (error) {
